@@ -10,6 +10,7 @@
 	<artifactId>library-rss</artifactId>
 	<version>1.0.4-SNAPSHOT</version>
 	<name>Library Rss</name>
+	<packaging>lutece-plugin</packaging>
 	<description>Common utils for rss</description>
 	
 	<dependencies>
