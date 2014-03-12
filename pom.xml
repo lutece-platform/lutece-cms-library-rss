@@ -1,17 +1,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<parent>
-		<artifactId>lutece-plugins-pom</artifactId>
-		<groupId>fr.paris.lutece.plugins</groupId>
-		<version>3.5</version>
-	</parent>
+    <parent>
+        <artifactId>lutece-plugins-pom</artifactId>
+        <groupId>fr.paris.lutece.plugins</groupId>
+        <version>3.5</version>
+    </parent>
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.paris.lutece.plugins</groupId>
 	<artifactId>library-rss</artifactId>
 	<version>1.0.4-SNAPSHOT</version>
+    <packaging>lutece-plugin</packaging>
 	<name>Library Rss</name>
-	<packaging>lutece-plugin</packaging>
 	<description>Common utils for rss</description>
+    
+    <properties>
+        <componentName>library-rss</componentName>
+        <jiraProjectName>LIBRARYRSS</jiraProjectName>
+        <jiraComponentId>10366</jiraComponentId>
+    </properties>
+    
+    <repositories>
+        <repository>
+            <id>lutece</id>
+            <name>luteceRepository</name>
+            <url>http://dev.lutece.paris.fr/maven_repository</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+          <id>luteceSnapshot</id>
+          <name>luteceSnapshot</name>
+          <url>http://dev.lutece.paris.fr/snapshot_repository</url>
+          <snapshots>
+              <enabled>true</enabled>
+          </snapshots>
+        </repository>
+    </repositories>
 	
 	<dependencies>
 		<dependency>
@@ -21,10 +44,6 @@
 			<type>lutece-core</type>
 		</dependency>
 	</dependencies>
-	<properties>
-		<jiraProjectName>LIBRARYRSS</jiraProjectName>
-		<jiraComponentId>10366</jiraComponentId>
-	</properties>
     <scm>
         <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/library/library-rss</connection>
         <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/library/library-rss</developerConnection>
