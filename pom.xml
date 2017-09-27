@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>library-rss</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5-SNAPSHOT</version>
     <name>Library Rss</name>
     <description>Common utils for rss</description>
 
@@ -48,6 +48,6 @@
         <connection>scm:git:https://github.com/lutece-platform/lutece-cms-library-rss.git</connection>
         <developerConnection>scm:git:https://github.com/lutece-platform/lutece-cms-library-rss.git</developerConnection>
         <url>https://github.com/lutece-platform/lutece-cms-library-rss.git</url>
-      <tag>lutece-cms-library-rss-1.0.4</tag>
+      <tag>HEAD</tag>
   </scm>
 </project>
