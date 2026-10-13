@@ -33,73 +33,30 @@
  */
 package fr.paris.lutece.plugins.rss.service;
 
-import org.springframework.beans.factory.BeanDefinitionStoreException;
-import org.springframework.beans.factory.CannotLoadBeanClassException;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
-
 import fr.paris.lutece.portal.service.plugin.PluginService;
-import fr.paris.lutece.portal.service.spring.SpringContextService;
-import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.util.ReferenceList;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Instance;
+import jakarta.inject.Inject;
 
 /**
  * RssLibraryService
  */
+@ApplicationScoped
 public class RssLibraryService
 {
     private static final String PLUGIN_RSS_NAME = "rss";
-    private static RssLibraryService _singleton;
-    private boolean _bServiceAvailable = true;
-    private IRssService _service;
+
+    @Inject
+    private Instance<IRssService> _service;
 
     /**
-     * Private constructor
+     * Tells whether the RSS service is available
+     * @return true if the RSS service is available
      */
-    private RssLibraryService(  )
-    {
-        try
-        {
-            _service = (IRssService) SpringContextService.getPluginBean( PLUGIN_RSS_NAME, "rssService" );
-            _bServiceAvailable = _service != null;
-        }
-        catch ( BeanDefinitionStoreException e )
-        {
-            _bServiceAvailable = false;
-            AppLogService.error( PLUGIN_RSS_NAME + " unavailable" );
-        }
-        catch ( NoSuchBeanDefinitionException e )
-        {
-            _bServiceAvailable = false;
-            AppLogService.error( PLUGIN_RSS_NAME + " unavailable" );
-        }
-        catch ( CannotLoadBeanClassException e )
-        {
-            _bServiceAvailable = false;
-            AppLogService.error( PLUGIN_RSS_NAME + " unavailable" );
-        }
-    }
-
-    /**
-    * Returns the unique instance of the service
-    * @return The instance of the service
-    */
-    public static RssLibraryService getInstance(  )
-    {
-        if ( _singleton == null )
-        {
-            _singleton = new RssLibraryService(  );
-        }
-
-        return _singleton;
-    }
-
-    /**
-    *
-    * @return true if the workflow service is available
-    */
     public boolean isAvailable(  )
     {
-        return _bServiceAvailable && PluginService.isPluginEnable( PLUGIN_RSS_NAME );
+        return _service.isResolvable(  ) && PluginService.isPluginEnable( PLUGIN_RSS_NAME );
     }
 
     /**
@@ -109,7 +66,7 @@ public class RssLibraryService
      */
     public String getRssContent( int nIdRssFeed )
     {
-        return isAvailable(  ) ? _service.getRssContent( nIdRssFeed ) : null;
+        return isAvailable(  ) ? _service.get(  ).getRssContent( nIdRssFeed ) : null;
     }
 
     /**
@@ -118,6 +75,6 @@ public class RssLibraryService
      */
     public ReferenceList getRefListRssFeed(  )
     {
-        return isAvailable(  ) ? _service.getRefListRssFeed(  ) : null;
+        return isAvailable(  ) ? _service.get(  ).getRefListRssFeed(  ) : null;
     }
 }
